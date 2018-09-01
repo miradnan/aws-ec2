@@ -27,8 +27,8 @@ func GetInstanceID() string {
 	return Get("instance-id")
 }
 
-// GetType ...
-func GetType() string {
+// GetInstanceType ...
+func GetInstanceType() string {
 	return Get("instance-type")
 }
 
