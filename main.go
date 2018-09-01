@@ -7,6 +7,10 @@ import (
 	"net/http"
 )
 
+func main() {
+
+}
+
 // Metadata ... Ec2 Machines Metadata
 type Metadata struct {
 	Port           int
