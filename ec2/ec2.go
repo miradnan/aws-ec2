@@ -51,7 +51,7 @@ func GetLocalIP() string {
 // Get ...
 func Get(Key string) string {
 	URL := fmt.Sprintf("http://169.254.169.254/latest/meta-data/%s", Key)
-	log.Panicln("Link:", URL)
+	log.Println("Link:", URL)
 	return GetMetaData(URL)
 }
 
