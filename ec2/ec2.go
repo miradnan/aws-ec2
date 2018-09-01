@@ -3,7 +3,6 @@ package ec2
 import (
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 )
 
@@ -20,43 +19,38 @@ type Metadata struct {
 
 // GetInstanceID ...
 func GetInstanceID() string {
-	return Get("instance-id")
+	return GetMetaData("instance-id")
 }
 
 // GetInstanceType ...
 func GetInstanceType() string {
-	return Get("instance-type")
+	return GetMetaData("instance-type")
 }
 
 // GetPublicHostname ...
 func GetPublicHostname() string {
-	return Get("public-hostname")
+	return GetMetaData("public-hostname")
 }
 
 // GetLocalHostname ...
 func GetLocalHostname() string {
-	return Get("local-hostname")
+	return GetMetaData("local-hostname")
 }
 
 // GetPublicIP ...
 func GetPublicIP() string {
-	return Get("public-ipv4")
+	return GetMetaData("public-ipv4")
 }
 
 // GetLocalIP ...
 func GetLocalIP() string {
-	return Get("local-ipv4")
-}
-
-// Get ...
-func Get(Key string) string {
-	URL := fmt.Sprintf("http://169.254.169.254/latest/meta-data/%s", Key)
-	log.Println("Link:", URL)
-	return GetMetaData(URL)
+	return GetMetaData("local-ipv4")
 }
 
 // GetMetaData ...
-func GetMetaData(URL string) string {
+func GetMetaData(Key string) string {
+	URL := fmt.Sprintf("http://169.254.169.254/latest/meta-data/%s", Key)
+
 	req, _ := http.NewRequest("GET", URL, nil)
 
 	res, _ := http.DefaultClient.Do(req)
